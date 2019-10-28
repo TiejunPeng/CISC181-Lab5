@@ -1,10 +1,13 @@
 package pkgCore;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
+
+import CircularLinkedList.CircularLinkedList;
 
 public class Table {
 
@@ -30,7 +33,7 @@ public class Table {
 	 * @version Lab #3
 	 * @since Lab #3
 	 */
-	private ArrayList<Player> TablePlayers = new ArrayList<Player>();
+	private CircularLinkedList<Player> TablePlayers = new CircularLinkedList<Player>();
 
 	/**
 	 * @author BRG
@@ -85,7 +88,7 @@ public class Table {
 	 */
 	public void RemovePlayerFromTable(Player p)
 	{		
-		TablePlayers.remove(p);
+		TablePlayers.delete(p);
 	}
 	
 	/**
@@ -96,9 +99,17 @@ public class Table {
 	 * getTablePlayers - return an ArrayList of players at the table
 	 * @return
 	 */
-	public ArrayList<Player> getTablePlayers()
-	{
-		return TablePlayers;
+	public void getPlayerButton() {
+		TablePlayers.getCurrent();
 	}
-	
+	public void ClearTable() {
+		TablePlayers.clear();
+	}
+	public void AdvanceButton() {
+		TablePlayers.advanceCurrent();
+	}
+	public ArrayList<Player> getTablePlayers() {
+		ArrayList<Player> tableplayer = new ArrayList<Player>(TablePlayers.getItemsInOrder());
+		return tableplayer;
+	}
 }
